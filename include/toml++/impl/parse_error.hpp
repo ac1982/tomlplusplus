@@ -12,6 +12,11 @@
 #include "print_to_stream.hpp"
 #include "header_start.hpp"
 
+#if TOML_MSVC
+// MSVC's std::runtime_error is implemented inline without a DLL annotation.
+#pragma warning(disable : 4275)
+#endif
+
 #if TOML_DOXYGEN || !TOML_EXCEPTIONS
 #define TOML_PARSE_ERROR_BASE
 #else
